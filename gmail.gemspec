@@ -22,13 +22,13 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 1.9.3'
   s.add_dependency "mime", ">= 0.1"
   s.add_dependency "mail", ">= 2.2.1"
-  s.add_dependency "activesupport", "~> 4"
+  s.add_dependency "activesupport"
   s.add_dependency('google-api-client', ['>= 0.10.0', '< 0.11.0'])
   s.add_dependency('googleauth', ['>= 0.5.0', '< 1.0.0'])
   s.add_dependency "hooks", ">=0.4.0"
   s.add_dependency "hashie", ">=3.3.2"
   s.add_dependency 'stringex', '~> 1.0'
-  
+
   # development dependencies
   s.add_development_dependency "rake"
   s.add_development_dependency "test-unit"
