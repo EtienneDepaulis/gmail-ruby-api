@@ -8,7 +8,7 @@ module Gmail
     include Base::Trash
 
     require "stringex"
-    
+
     after_initialize :set_basics
 
     # def self.get(id)
@@ -22,7 +22,7 @@ module Gmail
       end
       Gmail.client.batch do |client|
         mailIds.each do |id|
-          client.get_user_message("me", id) do |res, err|  
+          client.get_user_message("me", id) do |res, err|
             result = Hashie::Mash.new
             result.body = res.to_json
             mails << Gmail::Util.convert_to_gmail_object(Gmail.parse(result), "message")
@@ -139,15 +139,14 @@ module Gmail
         if text || html
           bodypart = Mail::Part.new
           if text
-            bodypart.text_part = Mail::Part.new do |p|
-              content_type 'text/plain; charset=UTF-8'
-              p.body s.text
+            bodypart.text_part do
+              body s.text
             end
           end
           if html
-            bodypart.html_part = Mail::Part.new do |p|
+            bodypart.html_part do
               content_type 'text/html; charset=UTF-8'
-              p.body s.html
+              body s.html
             end
           end
           msg.add_part bodypart
